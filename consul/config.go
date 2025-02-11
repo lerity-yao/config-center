@@ -10,4 +10,5 @@ type Conf struct {
 	Token      string        `json:",optional"`
 	TLSConfig  api.TLSConfig `json:"TLSConfig,optional"`
 	Key        string        `json:",optional"`
+	Type       string        `json:",default=yaml,options=yaml|hcl|json|xml"`
 }

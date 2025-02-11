@@ -18,6 +18,7 @@ type (
 		listeners []func()
 		lock      sync.Mutex
 		stopCh    chan struct{}
+		Type      string
 	}
 
 	// ConsulConf is the configuration for Consul.
@@ -50,6 +51,7 @@ func NewConsulSubscriber(conf ConsulConf) (*ConsulSubscriber, error) {
 		consulCli: client,
 		Path:      conf.Key,
 		stopCh:    make(chan struct{}),
+		Type:      conf.Type,
 	}
 	go subscriber.watch()
 	return subscriber, nil
@@ -67,7 +69,7 @@ func (s *ConsulSubscriber) AddListener(listener func()) error {
 // Value returns the current value from Consul.
 func (s *ConsulSubscriber) Value() (string, error) {
 	defaultConfig := viper.New()
-	defaultConfig.SetConfigType("yaml")
+	defaultConfig.SetConfigType(s.Type)
 	kvPair, _, err := s.consulCli.KV().Get(s.Path, nil)
 	if err != nil {
 		return "", err
