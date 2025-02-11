@@ -1,3 +1,3 @@
-module config-Center
+module config-center
 
 go 1.21
