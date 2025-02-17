@@ -3,7 +3,7 @@ package consul
 import "github.com/hashicorp/consul/api"
 
 type Conf struct {
-	Endpoint   string        `json:",optional"`
+	Host       string        `json:",optional"`
 	Scheme     string        `json:",default=http"`
 	PathPrefix string        `json:",optional"`
 	Datacenter string        `json:",optional"`

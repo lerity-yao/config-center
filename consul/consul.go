@@ -36,7 +36,7 @@ func MustNewConsulSubscriber(conf ConsulConf) *ConsulSubscriber {
 func NewConsulSubscriber(conf ConsulConf) (*ConsulSubscriber, error) {
 
 	client, err := consulApi.NewClient(&consulApi.Config{
-		Address:    conf.Endpoint,
+		Address:    conf.Host,
 		Scheme:     conf.Scheme,
 		PathPrefix: conf.PathPrefix,
 		Datacenter: conf.Datacenter,
